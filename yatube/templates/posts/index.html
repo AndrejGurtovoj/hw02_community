@@ -17,9 +17,9 @@
     </ul>      
     <p>{% if post.group %}</p>
     <a href="{% url 'posts:group_list' post.group.slug %}">{{post.group.title}}</a>
+  </article>
     <hr>{% endif %}
     {% if not forloop.last %}<hr>{% endif %}
     {{post.text}}
 {% endfor %}
-  </article>
 {% endblock %}
