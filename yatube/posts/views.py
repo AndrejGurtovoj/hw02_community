@@ -1,15 +1,17 @@
-
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-
 from .models import Post, Group
 
 
 def index(request):
     templates = 'posts/index.html'
-    posts = Post.objects.order_by('-pub_date')[:10]
+    post_list = Post.objects.all().order_by('-pub_date')
+    paginator = Paginator(post_list, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     title = 'Это главная страница проекта Yatube'
     context = {
-        'posts': posts,
+        'page_obj': page_obj,
         'title': title
     }
     return render(request, templates, context)
