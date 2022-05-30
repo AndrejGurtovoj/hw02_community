@@ -3,7 +3,7 @@
 {% block content %}
 
 
-  <h1>Это главная страница проекта Yatube</h1>
+  <h1>Последние обновления сайта Yatube</h1>
   
   {% for post in page_obj %}
   <article>
@@ -15,12 +15,12 @@
         Дата публикации: {{ post.pub_date|date:"d E Y" }}
       </li>
     </ul>      
-    <p>{% if post.group %}</p>
+    <p>{{post.text}}</p>
+    {% if post.group %}
     <a href="{% url 'posts:group_list' post.group.slug %}">{{post.group.title}}</a>
   </article>
     <hr>{% endif %}
     {% if not forloop.last %}<hr>{% endif %}
-    {{post.text}}
 {% endfor %}
 {% include 'posts/includes/paginator.html' %}
 {% endblock %}

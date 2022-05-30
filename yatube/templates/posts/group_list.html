@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %} Записи сообщества
-{% endblock %}
+{% block title %} Записи сообщества {% endblock %}
 {% block content %}
-  {% for post in posts %}
+  
   <h1>Записи сообщества</h1>
+  {% for post in posts %}
   <article>
     <ul>
       <li>
