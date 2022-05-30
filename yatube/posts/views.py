@@ -31,7 +31,6 @@ def group_posts(request, slug):
 
 
 def profile(request, username):
-    template = 'posts/profile.html'
     user = User.objects.get(username=username)
     posts = Post.objects.filter(author=user)
     paginator = Paginator(posts, 10)
@@ -43,11 +42,10 @@ def profile(request, username):
         'author': user,
         'count': count,
     }
-    return render(request, template, context)
+    return render(request, 'posts/profile.html', context)
 
 
 def post_detail(request, post_id):
-    template = 'posts/post_detail.html'
     post = get_object_or_404(Post, pk=post_id)
     text = post.text
     text_title = text[:30]
@@ -65,4 +63,4 @@ def post_detail(request, post_id):
         'group': group,
         'text_title': text_title,
     }
-    return render(request, template, context)
+    return render(request, 'posts/post_detail.html', context)
